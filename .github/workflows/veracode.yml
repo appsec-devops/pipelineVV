@@ -65,15 +65,9 @@ jobs:
       with:
           pipeline-results-json: results.json
           output-results-sarif: veracode-results.sarif
-   # - uses: github/codeql-action/upload-sarif@v2
-    #  with:
-    #     Path to SARIF file relative to the root of the repository
-      #  sarif_file: veracode-results.sarif
-    - name: get scan results
-      uses: actions/download-artifact@v3
-      with:
-        name: filtered-results
-
+    - uses: github/codeql-action/upload-sarif@v2
+      with: # Path to SARIF file relative to the root of the repository
+       sarif_file: veracode-results.sarif
     - name: import flaws as issues
       uses: veracode/veracode-flaws-to-issues@v2.1.0
       with:
